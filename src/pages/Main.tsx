@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import * as style from './style.module.scss'
-import Header from "../widgets/Header";
+import Header from "../widgets/Header/Header";
 import { fetchProducts } from '../services/fetchProducts'
+import Catalog from "../widgets/Catalog/Catalog";
 
 const Main = () => {
     useEffect(() => {
@@ -9,8 +10,9 @@ const Main = () => {
     }, [])
 
     return (
-        <div className="container">
+        <div className={style.container}>
             <Header/>
+            <Catalog/>
         </div>
     );
 };
