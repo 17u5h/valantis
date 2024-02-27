@@ -1,0 +1,3 @@
+export const GET_IDS_STARTED = 'GET_IDS_STARTED'
+export const GET_IDS_SUCCESS = 'GET_IDS_SUCCESS'
+export const GET_IDS_FAILURE = 'GET_IDS_FAILURE'

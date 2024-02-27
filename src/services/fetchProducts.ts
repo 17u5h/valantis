@@ -7,8 +7,8 @@ const API_KEY = 'Valantis'
 const CONTENT_TYPE_JSON = 'application/json'
 
 type Params = {
-    offset: number
-    limit: number
+    offset?: number
+    limit?: number
     ids?: string[]
     price?: number
     field?: string
@@ -33,7 +33,7 @@ const generateHeaders = (): Headers => {
     }
 }
 
-export const fetchProducts = async (action: string, params: Params, isRepeat: boolean = false) => {
+export const fetchProducts = async (action: string, params?: Params, isRepeat: boolean = false) => {
     try {
         const { data } = await axios.post(BASE_URL, { action, params },{ headers: generateHeaders() })
         console.log(data)

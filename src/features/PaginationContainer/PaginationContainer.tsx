@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Product } from '../../typings'
-import ReactPaginate from "react-paginate";
-import { ReactPaginateProps } from 'react-paginate'
+import ReactPaginate from 'react-paginate'
+import CatalogContainer from "../../widgets/Catalog/CatalogContainer";
 
 
 type Props = {
@@ -20,19 +20,18 @@ type MouseEventReactPaginate = {
     isActive: boolean;
 }
 
-const PaginationContainer = ({itemsPerPage, products}: Props): React.ReactNode => {
-    const [itemOffset, setItemOffset] = useState<number>(0)
-    const endOffset = itemOffset + itemsPerPage
-    const currentItems = products.slice(itemOffset, endOffset)
-    const pageCount = Math.ceil(products.length / itemsPerPage)
+const PaginationContainer = ({ products }: Props): React.ReactNode => {
+    const [itemsPerPage, setItemsPerPage] = useState<number>(50)
+    const [paginationOffset, setPaginationOffset] = useState<number>(0)
+    const [pageCount, setPageCount] = useState<number>(0)
 
     const handlePageClick = (event: MouseEventReactPaginate) => {
-        const newOffset = (event.selected * itemsPerPage) % products.length
-        setItemOffset(newOffset)
+        const newOffset = event.selected * itemsPerPage
+        setPaginationOffset(newOffset)
     }
     return (
         <>
-            <Items currentItems={products}/>
+            <CatalogContainer products={products} setPageCount={setPageCount}/>
             <ReactPaginate
                 breakLabel="..."
                 nextLabel="next >"
