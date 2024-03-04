@@ -34,11 +34,11 @@ const PaginationContainer = ({ products }: Props): React.ReactNode => {
             <CatalogContainer products={products} setPageCount={setPageCount}/>
             <ReactPaginate
                 breakLabel="..."
-                nextLabel="next >"
+                nextLabel=">"
                 onPageChange={handlePageClick}
                 pageRangeDisplayed={5}
                 pageCount={pageCount}
-                previousLabel="< previous"
+                previousLabel="<"
                 renderOnZeroPageCount={null}
             />
         </>

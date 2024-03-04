@@ -33,7 +33,13 @@ const generateHeaders = (): Headers => {
     }
 }
 
-export const fetchProducts = async (action: string, params?: Params, isRepeat: boolean = false) => {
+export const fetchProducts = async (
+    action: string,
+    setIsFetching: (isFetching: boolean) => void,
+    isRepeat: boolean = false,
+    params?: Params
+) => {
+    setIsFetching(true)
     try {
         const { data } = await axios.post(BASE_URL, { action, params },{ headers: generateHeaders() })
         console.log(data)
@@ -41,8 +47,11 @@ export const fetchProducts = async (action: string, params?: Params, isRepeat: b
     catch (e) {
         isRepeat = !isRepeat
         if (isRepeat) {
-            fetchProducts(action, params, isRepeat)
+            fetchProducts(action, setIsFetching, isRepeat, params)
         }
         console.error(e)
+    }
+    finally {
+        setIsFetching(false)
     }
 }
